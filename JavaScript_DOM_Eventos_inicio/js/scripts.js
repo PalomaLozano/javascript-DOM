@@ -1,22 +1,44 @@
-//.class
-//#id
-//h1
+//Eventos
 
-//querySelector
-const heading = document.querySelector('.header__texto h2');
+window.addEventListener('load', function () {
+  //load espera a que todos los archivos estén listos
+  console.log(2);
+});
 
-//querySelector retorna 0 o 1 elemento
+document.addEventListener('DOMContentLoaded', function () {
+  //DOMContentLoaded solo espera a que se descargue HTML y no las img o css, por eso se ejecuta primero que load
+  console.log(4);
+});
 
-heading.textContent = 'Contacto';
-heading.classList.add('nueva-clase');
+//seleccionar elemento y crear evento
 
-//querySelectorAll
-const enlaces = document.querySelectorAll('.navegacion a');
-enlaces[0].textContent = 'Nuevo texto para enlace';
-//enlaces[0].href = 'https://www.google.com';
-enlaces[0].classList.add('nueva-clase');
-enlaces[0].classList.remove('navegacion__enlace');
+const btnEnviar = document.querySelector('.boton--primario');
 
-//getElementById
-const heading2 = document.getElementById('heading');
-console.log(heading2);
+function handleBtn(ev) {
+  ev.preventDefault();
+
+  console.log('enviando form');
+}
+
+btnEnviar.addEventListener('click', handleBtn);
+
+//para formulario
+const datos = {
+  nombre: '',
+  email: '',
+  mensaje: '',
+};
+
+const nombre = document.querySelector('#nombre');
+const email = document.querySelector('#email');
+const mensaje = document.querySelector('#mensaje');
+
+function leerTexto(ev) {
+  //console.log(ev.target.value);
+  datos[ev.target.id] = ev.target.value;
+  console.log(datos);
+}
+
+nombre.addEventListener('input', leerTexto);
+email.addEventListener('input', leerTexto);
+mensaje.addEventListener('input', leerTexto);
